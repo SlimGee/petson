@@ -13,11 +13,7 @@
                         href="#"
                         aria-label="Brand"
                     >
-                        <img
-                            src="~/assets/img/logo.svg"
-                            alt="Logo"
-                            class="w-6 h-6"
-                        />
+                        <logo class="w-6 h-6 text-white" />
                         <span class="ms-2">petson.</span>
                     </a>
 
@@ -117,6 +113,122 @@
                 <slot />
             </div>
         </main>
+
+        <footer class="bg-default/10">
+            <div
+                class="mt-auto w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto"
+            >
+                <!-- Grid -->
+                <div
+                    class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 mb-10"
+                >
+                    <div class="col-span-full hidden lg:col-span-1 lg:block">
+                        <a
+                            class="flex flex-col items-center text-xl text-default"
+                            href="#"
+                            aria-label="Brand"
+                        >
+                            <logo class="w-14 h-14 text-default" />
+                            <span class="ms-2">petson.</span>
+                        </a>
+                    </div>
+                    <!-- End Col -->
+
+                    <div>
+                        <h4
+                            class="text-xs font-semibold text-gray-900 dark:text-neutral-100"
+                        >
+                            Petson
+                        </h4>
+
+                        <div class="mt-3 grid space-y-3 text-sm">
+                            <p>
+                                <a
+                                    class="inline-flex gap-x-2 text-gray-500 hover:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+                                    href="#"
+                                    >About us</a
+                                >
+                            </p>
+                            <p>
+                                <a
+                                    class="inline-flex gap-x-2 text-gray-500 hover:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+                                    href="#"
+                                    >Blog</a
+                                >
+                            </p>
+                            <p>
+                                <a
+                                    class="inline-flex gap-x-2 text-gray-500 hover:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+                                    href="#"
+                                    >Store locator</a
+                                >
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End Col -->
+
+                    <div>
+                        <h4
+                            class="text-xs font-semibold text-gray-900 dark:text-neutral-100"
+                        >
+                            Contact
+                        </h4>
+
+                        <div class="mt-3 grid space-y-3 text-sm text-gray-500">
+                            <p class="text-gray-500">contact@petson.com</p>
+                            <p>+385 000 000</p>
+                            <p>35 Shnauzer avenue, Dogville AL</p>
+                        </div>
+                    </div>
+                    <!-- End Col -->
+
+                    <div>
+                        <h4
+                            class="text-xs font-semibold text-gray-900 dark:text-neutral-100"
+                        >
+                            Information
+                        </h4>
+
+                        <div class="mt-3 grid space-y-3 text-sm">
+                            <p>
+                                <a
+                                    class="inline-flex gap-x-2 text-gray-500 hover:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+                                    href="#"
+                                    >Ordering and shipping</a
+                                >
+                            </p>
+                            <p>
+                                <a
+                                    class="inline-flex gap-x-2 text-gray-500 hover:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+                                    href="#"
+                                    >FAQ</a
+                                >
+                            </p>
+                            <p>
+                                <a
+                                    class="inline-flex gap-x-2 text-gray-500 hover:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+                                    href="#"
+                                    >GDPR statement</a
+                                >
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End Col -->
+
+                    <div>
+                        <div class="mt-3 grid space-y-3 text-sm text-gray-500">
+                            <p>
+                                If you can't find an answer to your question,
+                                please contact our
+                                <a href="#" class="text-blue-600"
+                                    >customer service</a
+                                >
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </template>
 
