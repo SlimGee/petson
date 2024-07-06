@@ -1,5 +1,5 @@
 <template>
-    <div class="p-4">
+    <NuxtLink class="p-4" :to="`/products/${product.uuid}`">
         <div class="group relative w-64 hover:shadow-md rounded p-4">
             <div
                 class="aspect-h-1 h-48 aspect-w-1 w-full overflow-hidden bg-white lg:aspect-none group-hover:opacity-75 lg:h-80"
@@ -26,7 +26,7 @@
                 <p class="text-sm font-medium text-gray-900">$35</p>
             </div>
         </div>
-    </div>
+    </NuxtLink>
 </template>
 
 <script setup lang="ts">

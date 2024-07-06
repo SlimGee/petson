@@ -6,7 +6,7 @@ export default defineNuxtConfig({
         '@nuxtjs/tailwindcss',
         'nuxt-bootstrap-icons',
         'vue3-carousel-nuxt',
-        "@nuxt/eslint"
+        '@nuxt/eslint',
     ],
     tailwindcss: {
         configPath: './tailwind.config.js',
@@ -15,3 +15,4 @@ export default defineNuxtConfig({
         typeCheck: true,
     },
 });
+
