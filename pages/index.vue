@@ -62,12 +62,7 @@
             </div>
         </div>
 
-        <div class="max-w-6xl mx-auto py-16">
-            <div>
-                <h2 class="font-medium text-3xl text-default">Dry dog food</h2>
-            </div>
-        </div>
-
+        <FeaturedCategory :categories="categories" />
         <!-- Features -->
         <div class="max-w-6xl mx-auto py-16">
             <!-- Grid -->
@@ -93,7 +88,7 @@
                                 Treat your pup
                             </h2>
                             <a
-                                class="py-1.5 px-2.5 inline-flex justify-center items-center gap-x-2 font-semibold border border-default bg-default underline text-white hover:bg-white/50 disabled:opacity-50 disabled:pointer-events-none"
+                                class="py-1.5 px-2.5 inline-flex justify-center items-center gap-x-2 font-semibold border border-default bg-default underline text-white hover:bg-default/80 disabled:opacity-50 disabled:pointer-events-none"
                                 href="#"
                             >
                                 Discover our dog treat selection
@@ -108,13 +103,7 @@
             <!-- End Grid -->
         </div>
 
-        <div class="max-w-6xl mx-auto py-16">
-            <div>
-                <h2 class="font-medium text-3xl text-default">
-                    Pet treats and chews
-                </h2>
-            </div>
-        </div>
+        <FeaturedCategory :categories="categories" />
 
         <div class="max-w-6xl mx-auto py-16">
             <div
@@ -129,7 +118,7 @@
                                 Get the best tips
                             </h2>
                             <a
-                                class="py-1.5 px-2.5 inline-flex justify-center items-center gap-x-2 font-semibold border border-default bg-default underline text-white hover:bg-white/50 disabled:opacity-50 disabled:pointer-events-none"
+                                class="py-1.5 px-2.5 inline-flex justify-center items-center gap-x-2 font-semibold border border-default bg-default underline text-white hover:bg-default/80 disabled:opacity-50 disabled:pointer-events-none"
                                 href="#"
                             >
                                 Read our blog
@@ -150,4 +139,10 @@
     </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const { data } = await useFetch<any>(
+    'https://pet-shop.buckhill.com.hr/api/v1/categories'
+);
+
+const categories: Category[] = data.value.data;
+</script>
