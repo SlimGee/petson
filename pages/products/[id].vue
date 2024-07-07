@@ -86,8 +86,19 @@ const sub = () => {
         quantity.value--;
     }
 };
+const { addItem, getItem } = useCartStore();
 
-const addToCart = () => {};
+const addToCart = () => {
+    const item = getItem(product.value.uuid);
+
+    if (item) {
+        if (item?.quantity < product.value.quantity) {
+            addItem(product.value.uuid, quantity.value);
+        }
+    } else {
+        addItem(product.value.uuid);
+    }
+};
 </script>
 
 <style></style>

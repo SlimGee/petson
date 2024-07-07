@@ -1,9 +1,11 @@
 <template>
     <div class="max-w-6xl mx-auto py-16">
         <div>
-            <h2 class="font-medium text-3xl text-default">
-                {{ category.title }}
-            </h2>
+            <NuxtLink :to="`/categories/${category.uuid}`">
+                <h2 class="font-medium text-3xl text-default">
+                    {{ category.title }}
+                </h2>
+            </NuxtLink>
         </div>
         <div class="my-10">
             <carousel :items-to-show="4">

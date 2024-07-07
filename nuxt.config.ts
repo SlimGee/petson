@@ -7,6 +7,7 @@ export default defineNuxtConfig({
         'nuxt-bootstrap-icons',
         'vue3-carousel-nuxt',
         '@nuxt/eslint',
+        '@pinia/nuxt',
     ],
     tailwindcss: {
         configPath: './tailwind.config.js',

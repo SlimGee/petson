@@ -71,7 +71,7 @@
                             href="#"
                             aria-current="page"
                         >
-                            Promotions
+                            Products
                         </a>
                         <a
                             class="py-3 ps-px sm:px-3 text-white/80 hover:text-white"
@@ -93,7 +93,7 @@
                         href="#"
                     >
                         <i class="bi bi-cart"></i>
-                        Cart (0)
+                        Cart ({{ store.totalItems }})
                     </a>
 
                     <a
@@ -232,4 +232,6 @@
     </div>
 </template>
 
-<script setup></script>
+<script setup>
+const store = useCartStore();
+</script>
