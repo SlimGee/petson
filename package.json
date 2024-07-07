@@ -12,14 +12,18 @@
   "dependencies": {
     "@nuxt/eslint": "^0.3.13",
     "@nuxt/image": "^1.7.0",
+    "@nuxt/ui": "^2.17.0",
     "@nuxtjs/tailwindcss": "^6.12.0",
     "@pinia/nuxt": "^0.5.1",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.13",
+    "lodash": "^4.17.21",
     "nuxt": "^3.12.3",
     "pinia": "^2.1.7",
     "vue": "latest",
-    "vue3-carousel-nuxt": "^1.1.2"
+    "vue-tsc": "^2.0.26",
+    "vue3-carousel-nuxt": "^1.1.2",
+    "zod": "^3.23.8"
   },
   "prettier": {
     "tabWidth": 4,

@@ -3,13 +3,13 @@ export default defineNuxtConfig({
     compatibilityDate: '2024-04-03',
     devtools: { enabled: true },
     modules: [
-        '@nuxtjs/tailwindcss',
         'nuxt-bootstrap-icons',
         'vue3-carousel-nuxt',
         '@nuxt/eslint',
         '@pinia/nuxt',
         '@pinia-plugin-persistedstate/nuxt',
         '@nuxt/image',
+        '@nuxt/ui',
     ],
     tailwindcss: {
         configPath: './tailwind.config.js',
@@ -21,6 +21,9 @@ export default defineNuxtConfig({
         buckhill: {
             siteUrl: 'https://pet-shop.buckhill.com.hr/api/v1/file',
         },
+    },
+    colorMode: {
+        preference: 'light',
     },
     image: {
         providers: {

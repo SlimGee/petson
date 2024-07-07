@@ -49,11 +49,13 @@
         </div>
 
         <div class="mt-8">
-            <button
-                class="uppercase w-full text-xs px-3 py-2.5 rounded border font-semibold bg-default text-white"
-            >
-                Poceedd to checkout
-            </button>
+            <NuxtLink to="/checkout">
+                <button
+                    class="uppercase w-full text-xs px-3 py-2.5 rounded border font-semibold bg-default text-white"
+                >
+                    Poceedd to checkout
+                </button>
+            </NuxtLink>
         </div>
     </div>
 </template>
