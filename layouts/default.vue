@@ -88,13 +88,14 @@
                 </div>
 
                 <div class="grid gap-3 sm:inline-flex grow w-4/12 justify-end">
-                    <a
-                        class="py-3 px-4 inline-flex uppercase tracking-wider justify-center items-center gap-x-2 text-sm font-semibold rounded border border-white bg-transparent text-white hover:bg-white/50 disabled:opacity-50 disabled:pointer-events-none"
-                        href="#"
-                    >
-                        <i class="bi bi-cart"></i>
-                        Cart ({{ store.totalItems }})
-                    </a>
+                    <NuxtLink to="/cart">
+                        <button
+                            class="py-3 px-4 inline-flex uppercase tracking-wider justify-center items-center gap-x-2 text-sm font-semibold rounded border border-white bg-transparent text-white hover:bg-white/50 disabled:opacity-50 disabled:pointer-events-none"
+                        >
+                            <i class="bi bi-cart"></i>
+                            Cart ({{ store.totalItems }})
+                        </button>
+                    </NuxtLink>
 
                     <a
                         class="py-3 px-4 inline-flex uppercase tracking-wider justify-center items-center gap-x-2 text-sm font-semibold rounded border border-white bg-transparent text-white hover:bg-white/50 disabled:opacity-50 disabled:pointer-events-none"

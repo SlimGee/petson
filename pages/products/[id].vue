@@ -93,10 +93,10 @@ const addToCart = () => {
 
     if (item) {
         if (item?.quantity < product.value.quantity) {
-            addItem(product.value.uuid, quantity.value);
+            addItem(product.value, quantity.value);
         }
     } else {
-        addItem(product.value.uuid);
+        addItem(product.value);
     }
 };
 </script>

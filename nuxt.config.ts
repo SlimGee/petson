@@ -9,6 +9,7 @@ export default defineNuxtConfig({
         '@nuxt/eslint',
         '@pinia/nuxt',
         '@pinia-plugin-persistedstate/nuxt',
+        '@nuxt/image',
     ],
     tailwindcss: {
         configPath: './tailwind.config.js',
@@ -16,4 +17,22 @@ export default defineNuxtConfig({
     typescript: {
         typeCheck: true,
     },
+    runtimeConfig: {
+        buckhill: {
+            siteUrl: 'https://pet-shop.buckhill.com.hr/api/v1/file',
+        },
+    },
+    image: {
+        providers: {
+            buckhill: {
+                name: 'buckhill', // optional value to overrider provider name
+                provider: '~/providers/buckhill.ts', // Path to custom provider
+                options: {
+                    // ... provider options
+                    baseURL: 'https://pet-shop.buckhill.com.hr/api/v1/file',
+                },
+            },
+        },
+    },
 });
+
