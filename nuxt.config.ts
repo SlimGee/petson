@@ -8,6 +8,7 @@ export default defineNuxtConfig({
         'vue3-carousel-nuxt',
         '@nuxt/eslint',
         '@pinia/nuxt',
+        '@pinia-plugin-persistedstate/nuxt',
     ],
     tailwindcss: {
         configPath: './tailwind.config.js',
@@ -16,4 +17,3 @@ export default defineNuxtConfig({
         typeCheck: true,
     },
 });
-

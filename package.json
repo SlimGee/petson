@@ -26,6 +26,7 @@
     "trailingComma": "es5"
   },
   "devDependencies": {
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
     "nuxt-bootstrap-icons": "^2.0.0",
     "typescript": "^5.5.3"
   }
