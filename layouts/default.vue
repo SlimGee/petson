@@ -98,7 +98,7 @@
                     </NuxtLink>
 
                     <button
-                        @click="openModal"
+                        @click="showLogin"
                         class="py-3 px-4 inline-flex uppercase tracking-wider justify-center items-center gap-x-2 text-sm font-semibold rounded border border-white bg-transparent text-white hover:bg-white/50 disabled:opacity-50 disabled:pointer-events-none"
                         href="#"
                     >
@@ -116,7 +116,7 @@
             </div>
         </main>
 
-        <UModals />
+        <AuthModals />
 
         <footer class="bg-default/10">
             <div
@@ -237,13 +237,9 @@
 </template>
 
 <script setup>
-import { AuthLogin } from '#components';
-
-const modal = useModal();
-
-const openModal = () => {
-    modal.open(AuthLogin, {});
-};
+import { AuthLogin, AuthRegister } from '#components';
 
 const store = useCartStore();
+
+const { showLogin } = useAuthPages();
 </script>

@@ -9,10 +9,23 @@ export const useAuthStore = defineStore('auth', {
     state: () => ({
         authenticated: false,
         loading: false,
+        user: {} as User,
     }),
+    persist: true,
     actions: {
+        async authenticate(token: string) {
+            this.authenticated = true;
+            const cookie = useCookie('token');
+            cookie.value = token;
+            this.authenticated = true;
+        },
+
+        setUser(user: User) {
+            this.user = user;
+        },
+
         async authenticateUser({ email, password }: UserPayload) {
-            const { data, status }: any = await useFetch(
+            const { data, status, error }: any = await useFetch(
                 'https://pet-shop.buckhill.com.hr/api/v1/user/login',
                 {
                     method: 'POST',
