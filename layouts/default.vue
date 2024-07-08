@@ -87,7 +87,9 @@
                     </div>
                 </div>
 
-                <div class="grid gap-3 sm:inline-flex grow w-4/12 justify-end">
+                <div
+                    class="flex space-x-3 items-center grow w-4/12 justify-end"
+                >
                     <NuxtLink to="/cart">
                         <button
                             class="py-3 px-4 inline-flex uppercase tracking-wider justify-center items-center gap-x-2 text-sm font-semibold rounded border border-white bg-transparent text-white hover:bg-white/50 disabled:opacity-50 disabled:pointer-events-none"
@@ -104,6 +106,25 @@
                     >
                         Login
                     </button>
+
+                    <div v-if="authenticated">
+                        <div
+                            class="h-10 rounded-full w-10 bg-white text-default flex justify-center items-center font-bold text-lg"
+                            v-if="!user?.avatar"
+                        >
+                            {{ user?.first_name[0] }}
+                        </div>
+                        <div
+                            v-else
+                            class="h-10 rounded-full w-10 overflow-hidden"
+                        >
+                            <NuxtImg
+                                :src="user.avatar"
+                                provider="buckhill"
+                                class="w-full h-full object-cover"
+                            />
+                        </div>
+                    </div>
                 </div>
             </nav>
         </header>
@@ -237,9 +258,10 @@
 </template>
 
 <script setup>
-import { AuthLogin, AuthRegister } from '#components';
+import { storeToRefs } from 'pinia';
 
 const store = useCartStore();
 
 const { showLogin } = useAuthPages();
+const { authenticated, user } = storeToRefs(useAuthStore());
 </script>

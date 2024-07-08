@@ -9,7 +9,7 @@ export const useAuthStore = defineStore('auth', {
     state: () => ({
         authenticated: false,
         loading: false,
-        user: {} as User,
+        user: null as User | null,
     }),
     persist: true,
     actions: {
@@ -23,22 +23,23 @@ export const useAuthStore = defineStore('auth', {
         setUser(user: User) {
             this.user = user;
         },
+        async loadUser() {
+            const token = useCookie('token');
 
-        async authenticateUser({ email, password }: UserPayload) {
-            const { data, status, error }: any = await useFetch(
-                'https://pet-shop.buckhill.com.hr/api/v1/user/login',
-                {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: { email, password },
-                }
-            );
-            this.loading = true;
+            try {
+                const { data: user }: any = await $fetch(
+                    'https://pet-shop.buckhill.com.hr/api/v1/user',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token.value}`,
+                        },
+                    }
+                );
 
-            if (data.value) {
-                const token = useCookie('token');
-                token.value = data.value?.data?.token;
-                this.authenticated = true;
+                this.user = user;
+            } catch (error) {
+                this.authenticated = false;
+                token.value = null;
             }
         },
         logoutUser() {

@@ -18,7 +18,7 @@
                     <span class="font-semibold">Petson.</span>
                 </div>
             </div>
-            <div class="flex justify-center mt-2">
+            <div class="flex justify-center mt-2 mb-4">
                 <h2 class="font-medium">Log in</h2>
             </div>
             <UForm
@@ -107,7 +107,7 @@ const { data, status, error, execute }: any = useFetch(
 );
 
 const toast = useToast();
-
+const { authenticate, loadUser } = useAuthStore();
 const onSubmit = async () => {
     await execute();
     if (status.value == 'error') {
@@ -126,6 +126,12 @@ const onSubmit = async () => {
         ]);
 
         state.password = '';
+    }
+
+    if (status.value == 'success') {
+        store.login = false;
+        await authenticate(data.value?.data?.token);
+        await loadUser();
     }
 };
 </script>
