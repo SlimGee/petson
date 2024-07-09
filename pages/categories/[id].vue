@@ -131,9 +131,9 @@
 
 <script setup lang="ts">
 const { id } = useRoute().params;
-const { data: products } = useFetch<any>(
-    `https://pet-shop.buckhill.com.hr/api/v1/products?category=${id}`
-);
+const {loadProducts} = useCategory()
+
+const { data: products}:any = await loadProducts(id as string)
 
 const { data: brands } = useFetch<any>(
     'https://pet-shop.buckhill.com.hr/api/v1/brands',

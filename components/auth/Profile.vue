@@ -99,11 +99,7 @@
 
                     <template #download-data="{ row }">
                         <div class="flex justify-center space-x-3">
-                            <UButton
-                                color="gray"
-                                @click="download(row.uuid)"
-                                icon="i-heroicons-arrow-down-tray"
-                            />
+                          
                             <UButton
                                 :to="`/orders/${row.uuid}`"
                                 icon="i-heroicons-eye"
@@ -165,18 +161,6 @@ const columns = [
         label: 'Download Invoice',
     },
 ];
-
-const download = async (uuid) => {
-    const { data } = await downloadInvoice(uuid);
-    //the data is a Blob instance now we need to download
-    console.log(data);
-    const url = window.URL.createObjectURL(data.value);
-    const link = document.createElement('a');
-    link.href = url;
-    // link.target = '_blank';
-    link.click();
-    window.URL.revokeObjectURL(url);
-};
 
 const close = () => {
     store.profile = false;

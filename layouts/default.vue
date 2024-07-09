@@ -66,13 +66,11 @@
                     <div
                         class="flex text-base flex-col sm:flex-row sm:items-center sm:justify-center py-2 md:py-0 sm:ps-7 uppercase font-semibold"
                     >
-                        <a
+                    <NuxtLink :to="`/categories/${category.uuid}`"
                             class="py-3 ps-px sm:px-3 text-white"
-                            href="#"
-                            aria-current="page"
                         >
                             Products
-                        </a>
+                        </NuxtLink>
                         <a
                             class="py-3 ps-px sm:px-3 text-white/80 hover:text-white"
                             href="#"
@@ -264,4 +262,8 @@ const store = useCartStore();
 
 const { showLogin, showProfile } = useAuthPages();
 const { authenticated, user } = storeToRefs(useAuthStore());
+const {loadCategories} = useCategory()
+
+const {data:response} = await loadCategories()
+const category = response.value.data[0]
 </script>
