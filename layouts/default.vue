@@ -107,7 +107,7 @@
                         Login
                     </button>
 
-                    <div v-if="authenticated">
+                    <button @click="showProfile" v-if="authenticated">
                         <div
                             class="h-10 rounded-full w-10 bg-white text-default flex justify-center items-center font-bold text-lg"
                             v-if="!user?.avatar"
@@ -124,7 +124,7 @@
                                 class="w-full h-full object-cover"
                             />
                         </div>
-                    </div>
+                    </button>
                 </div>
             </nav>
         </header>
@@ -262,6 +262,6 @@ import { storeToRefs } from 'pinia';
 
 const store = useCartStore();
 
-const { showLogin } = useAuthPages();
+const { showLogin, showProfile } = useAuthPages();
 const { authenticated, user } = storeToRefs(useAuthStore());
 </script>

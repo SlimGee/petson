@@ -145,6 +145,7 @@
                 </div>
                 <div class="mt-8">
                     <button
+                        @click="checkout"
                         class="uppercase w-full text-xs px-3 py-2.5 rounded border font-semibold bg-default text-white"
                     >
                         Place order
@@ -159,4 +160,65 @@
 import { startCase } from 'lodash';
 const { shipping, billing, payment } = useCheckoutStore();
 const { items } = useCartStore();
+const token = useCookie('token');
+
+const { data, execute } = useAsyncData(
+    async () => {
+        const { data }: any = await $fetch(
+            'https://pet-shop.buckhill.com.hr/api/v1/payment/create',
+            {
+                method: 'POST',
+                body: payment,
+                headers: {
+                    Authorization: `Bearer ${token.value}`,
+                },
+            }
+        );
+        const { data: statuses }: any = await $fetch(
+            'https://pet-shop.buckhill.com.hr/api/v1/order-statuses'
+        );
+        const status = statuses.find((status: any) => status.title === 'paid');
+        const { data: order }: any = await $fetch(
+            'https://pet-shop.buckhill.com.hr/api/v1/order/create',
+            {
+                method: 'POST',
+                body: {
+                    products: items.map((item: CartItem) => ({
+                        product: item.product.uuid,
+                        quantity: item.quantity,
+                    })),
+                    address: {
+                        shipping:
+                            shipping.address1 +
+                            ', ' +
+                            shipping.city +
+                            ', ' +
+                            shipping.postcode +
+                            ', ' +
+                            shipping.country,
+                        billing:
+                            billing.address1 +
+                            ', ' +
+                            billing.city +
+                            ', ' +
+                            billing.postcode +
+                            ', ' +
+                            billing.country,
+                    },
+                    payment_uuid: data.uuid,
+                    order_status_uuid: status.uuid,
+                },
+                headers: {
+                    Authorization: `Bearer ${token.value}`,
+                },
+            }
+        );
+    },
+    { immediate: false }
+);
+
+const checkout = async () => {
+    await execute();
+    navigateTo('/');
+};
 </script>

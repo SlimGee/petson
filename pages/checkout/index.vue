@@ -126,6 +126,11 @@
 import { z } from 'zod';
 import type { FormSubmitEvent } from '#ui/types';
 
+definePageMeta({
+    middleware: ['auth'],
+    // or middleware: 'auth'
+});
+
 const schema = z.object({
     first_name: z.string().nonempty().trim(),
     last_name: z.string().nonempty().trim(),

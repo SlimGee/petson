@@ -1,8 +1,11 @@
 <template>
-    <AuthLogin :show="login" />
-    <AuthRegister :show="register" />
+    <div>
+        <AuthLogin :show="login" />
+        <AuthRegister :show="register" />
+        <AuthProfile :show="profile" />
+    </div>
 </template>
 
 <script setup lang="ts">
-const { login, register } = useAuthPages();
+const { login, register, profile } = useAuthPages();
 </script>

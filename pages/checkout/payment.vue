@@ -366,6 +366,7 @@ const paymentTypes = [
         icon: 'i-heroicons-arrows-right-left',
     },
 ];
+payment.type = 'credit_card';
 
 const onSubmit = async (event: FormSubmitEvent<Schema>) => {
     router.push('/checkout/summary');

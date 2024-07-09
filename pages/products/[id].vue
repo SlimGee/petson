@@ -89,15 +89,7 @@ const sub = () => {
 const { addItem, getItem } = useCartStore();
 
 const addToCart = () => {
-    const item = getItem(product.value.uuid);
-
-    if (item) {
-        if (item?.quantity < product.value.quantity) {
-            addItem(product.value, quantity.value);
-        }
-    } else {
-        addItem(product.value);
-    }
+    addItem(product.value);
 };
 </script>
 
