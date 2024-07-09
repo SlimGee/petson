@@ -20,6 +20,7 @@
     "@types/lodash": "^4.17.6",
     "collect.js": "^4.36.1",
     "form-urlencoded": "^6.1.5",
+    "html2pdf.js": "^0.9.0",
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
     "nuxt": "^3.12.3",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
+    "@sidebase/nuxt-pdf": "^1.0.0-alpha.0",
     "nuxt-bootstrap-icons": "^2.0.0",
     "typescript": "^5.5.3"
   }

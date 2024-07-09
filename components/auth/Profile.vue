@@ -129,13 +129,14 @@ import { storeToRefs } from 'pinia';
 import moment from 'moment';
 
 const store = useAuthPages();
-const { user } = storeToRefs(useAuthStore());
+const { user} = storeToRefs(useAuthStore());
+const {logoutUser} = useAuthStore()
 const { downloadInvoice, loadOrders } = useOrder();
 
 const page = ref(1);
 const orders = ref([]);
 
-const { data: response } = await loadOrders(user.value, page);
+const { data: response, status } = await loadOrders(user.value, page);
 
 watch(
     response,
@@ -173,7 +174,7 @@ const download = async (uuid) => {
     const link = document.createElement('a');
     link.href = url;
     // link.target = '_blank';
-    //link.click();
+    link.click();
     window.URL.revokeObjectURL(url);
 };
 

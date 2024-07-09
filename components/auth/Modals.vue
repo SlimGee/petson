@@ -2,10 +2,13 @@
     <div>
         <AuthLogin :show="login" />
         <AuthRegister :show="register" />
-        <AuthProfile :show="profile" />
+        <AuthProfile v-if="authenticated" :show="profile" />
     </div>
 </template>
 
 <script setup lang="ts">
-const { login, register, profile } = useAuthPages();
+  import {storeToRefs} from 'pinia'
+
+const { login, register, profile } = storeToRefs(useAuthPages());
+const {authenticated} = storeToRefs(useAuthStore())
 </script>

@@ -10,6 +10,7 @@ export default defineNuxtConfig({
         '@pinia-plugin-persistedstate/nuxt',
         '@nuxt/image',
         '@nuxt/ui',
+    '@sidebase/nuxt-pdf'
     ],
     tailwindcss: {
         configPath: './tailwind.config.js',

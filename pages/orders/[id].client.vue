@@ -1,10 +1,72 @@
 <template>
     <!-- Invoice -->
-    <div class="container px-4 mx-auto my-4 sm:my-10">
-        <div class="sm:w-11/12 mx-auto">
-            <!-- Card -->
-            <div
-                class="flex flex-col p-4 sm:p-10 bg-white shadow-sm border rounded-xl dark:bg-neutral-800"
+    <div class="w-full px-4 mx-auto my-4 "  
+>
+        <div class="sm:w-full mx-auto">
+          <ol class="flex items-center whitespace-nowrap py-6">
+            <li class="inline-flex items-center">
+                <a
+                    class="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:text-neutral-500 dark:hover:text-blue-500 dark:focus:text-blue-500"
+                    href="#"
+                >
+                    Home
+                </a>
+                <svg
+                    class="flex-shrink-0 size-5 text-gray-400 dark:text-neutral-600 mx-2"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                >
+                    <path
+                        d="M6 13L10 3"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                    ></path>
+                </svg>
+            </li>
+
+            <li
+                class="inline-flex items-center text-sm font-semibold text-gray-800 truncate dark:text-neutral-200"
+                aria-current="page"
+            >
+                Your Order
+            </li>
+        </ol>
+        <h1 class="text-6xl font-medium tracking-tight text-default">
+            Your Order
+        </h1>
+
+
+            <div class="mt-6 flex justify-end gap-x-3">
+                <button
+                    class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-lg border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-neutral-800 dark:hover:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
+                    @click="downloadInvoice"
+                >
+                    <svg
+                        class="flex-shrink-0 size-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" x2="12" y1="15" y2="3" />
+                    </svg>
+                    Invoice PDF
+                </button>
+            </div>
+                        <!-- Card -->
+            <div ref="invoice"
+                               class="flex flex-col p-4 sm:p-10 bg-white shadow-sm border rounded-xl dark:bg-neutral-800 my-4 sm:my-10"
             >
                 <!-- Grid -->
                 <div class="flex justify-between">
@@ -148,11 +210,12 @@
                         ></div>
 
                         <div
-                            v-for="item in order.products"
+                            v-for="item, index in order.products"
                             :key="item.uuid"
-                            class="grid grid-cols-3 sm:grid-cols-12 gap-2"
-                        >
-                            <div class="col-span-full sm:col-span-4">
+                                                    >
+                        <div class="grid grid-cols-3 sm:grid-cols-12 gap-2">
+
+                                                    <div class="col-span-full sm:col-span-4">
                                 <h5
                                     class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
                                 >
@@ -212,6 +275,7 @@
                                         ).toFixed(2)
                                     }}
                                 </p>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -295,39 +359,29 @@
                 </p>
             </div>
 
-            <div class="mt-6 flex justify-end gap-x-3">
-                <a
-                    class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-lg border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-neutral-800 dark:hover:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
-                    href="#"
-                >
-                    <svg
-                        class="flex-shrink-0 size-4"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                        <polyline points="7 10 12 15 17 10" />
-                        <line x1="12" x2="12" y1="15" y2="3" />
-                    </svg>
-                    Invoice PDF
-                </a>
-            </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import moment from 'moment';
+import html2pdf from 'html2pdf.js'
+
 const { loadOrder } = useOrder();
 const { id } = useRoute().params;
 
 const { data: response }: any = await loadOrder(id as string);
 const order = ref(response.value.data);
+
+const invoice = ref()
+
+const downloadInvoice = () => {
+html2pdf().set({
+            margin: 1.5,
+            filename: `${order.value.uuid}.pdf`,
+             jsPDF: { unit: 'in', format: 'a1', orientation: 'portrait', },
+        })
+        .from(invoice.value)
+        .toPdf()
+        .save()}
 </script>
