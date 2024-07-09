@@ -1,44 +1,42 @@
 <template>
     <!-- Invoice -->
-    <div class="w-full px-4 mx-auto my-4 "  
->
+    <div class="w-full px-4 mx-auto my-4">
         <div class="sm:w-full mx-auto">
-          <ol class="flex items-center whitespace-nowrap py-6">
-            <li class="inline-flex items-center">
-                <a
-                    class="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:text-neutral-500 dark:hover:text-blue-500 dark:focus:text-blue-500"
-                    href="#"
-                >
-                    Home
-                </a>
-                <svg
-                    class="flex-shrink-0 size-5 text-gray-400 dark:text-neutral-600 mx-2"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                >
-                    <path
-                        d="M6 13L10 3"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                    ></path>
-                </svg>
-            </li>
+            <ol class="flex items-center whitespace-nowrap py-6">
+                <li class="inline-flex items-center">
+                    <a
+                        class="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:text-neutral-500 dark:hover:text-blue-500 dark:focus:text-blue-500"
+                        href="#"
+                    >
+                        Home
+                    </a>
+                    <svg
+                        class="flex-shrink-0 size-5 text-gray-400 dark:text-neutral-600 mx-2"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M6 13L10 3"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                        ></path>
+                    </svg>
+                </li>
 
-            <li
-                class="inline-flex items-center text-sm font-semibold text-gray-800 truncate dark:text-neutral-200"
-                aria-current="page"
-            >
+                <li
+                    class="inline-flex items-center text-sm font-semibold text-gray-800 truncate dark:text-neutral-200"
+                    aria-current="page"
+                >
+                    Your Order
+                </li>
+            </ol>
+            <h1 class="text-6xl font-medium tracking-tight text-default">
                 Your Order
-            </li>
-        </ol>
-        <h1 class="text-6xl font-medium tracking-tight text-default">
-            Your Order
-        </h1>
-
+            </h1>
 
             <div class="mt-6 flex justify-end gap-x-3">
                 <button
@@ -64,9 +62,10 @@
                     Invoice PDF
                 </button>
             </div>
-                        <!-- Card -->
-            <div ref="invoice"
-                               class="flex flex-col p-4 sm:p-10 bg-white shadow-sm border rounded-xl dark:bg-neutral-800 my-4 sm:my-10"
+            <!-- Card -->
+            <div
+                ref="invoice"
+                class="flex flex-col p-4 sm:p-10 bg-white shadow-sm border rounded-xl dark:bg-neutral-800 my-4 sm:my-10"
             >
                 <!-- Grid -->
                 <div class="flex justify-between">
@@ -210,72 +209,75 @@
                         ></div>
 
                         <div
-                            v-for="item, index in order.products"
+                            v-for="(item, index) in order.products"
                             :key="item.uuid"
-                                                    >
-                        <div class="grid grid-cols-3 sm:grid-cols-12 gap-2">
+                        >
+                            <div class="grid grid-cols-3 sm:grid-cols-12 gap-2">
+                                <div class="col-span-full sm:col-span-4">
+                                    <h5
+                                        class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                                    >
+                                        ID
+                                    </h5>
+                                    <p
+                                        class="font-medium text-gray-800 dark:text-neutral-200"
+                                    >
+                                        {{ item.uuid }}
+                                    </p>
+                                </div>
 
-                                                    <div class="col-span-full sm:col-span-4">
-                                <h5
-                                    class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
-                                >
-                                    ID
-                                </h5>
-                                <p
-                                    class="font-medium text-gray-800 dark:text-neutral-200"
-                                >
-                                    {{ item.uuid }}
-                                </p>
-                            </div>
-
-                            <div class="col-span-full sm:col-span-5">
-                                <h5
-                                    class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
-                                >
-                                    Item
-                                </h5>
-                                <p
-                                    class="font-medium text-gray-800 dark:text-neutral-200"
-                                >
-                                    {{ item.product }}
-                                </p>
-                            </div>
-                            <div>
-                                <h5
-                                    class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
-                                >
-                                    Qty
-                                </h5>
-                                <p class="text-gray-800 dark:text-neutral-200">
-                                    {{ item.quantity }}
-                                </p>
-                            </div>
-                            <div>
-                                <h5
-                                    class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
-                                >
-                                    Rate
-                                </h5>
-                                <p class="text-gray-800 dark:text-neutral-200">
-                                    {{ item.price }}
-                                </p>
-                            </div>
-                            <div>
-                                <h5
-                                    class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
-                                >
-                                    Amount
-                                </h5>
-                                <p
-                                    class="sm:text-end text-gray-800 dark:text-neutral-200"
-                                >
-                                    ${{
-                                        Number(
-                                            item.price * item.quantity
-                                        ).toFixed(2)
-                                    }}
-                                </p>
-                            </div>
+                                <div class="col-span-full sm:col-span-5">
+                                    <h5
+                                        class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                                    >
+                                        Item
+                                    </h5>
+                                    <p
+                                        class="font-medium text-gray-800 dark:text-neutral-200"
+                                    >
+                                        {{ item.product }}
+                                    </p>
+                                </div>
+                                <div>
+                                    <h5
+                                        class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                                    >
+                                        Qty
+                                    </h5>
+                                    <p
+                                        class="text-gray-800 dark:text-neutral-200"
+                                    >
+                                        {{ item.quantity }}
+                                    </p>
+                                </div>
+                                <div>
+                                    <h5
+                                        class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                                    >
+                                        Rate
+                                    </h5>
+                                    <p
+                                        class="text-gray-800 dark:text-neutral-200"
+                                    >
+                                        {{ item.price }}
+                                    </p>
+                                </div>
+                                <div>
+                                    <h5
+                                        class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                                    >
+                                        Amount
+                                    </h5>
+                                    <p
+                                        class="sm:text-end text-gray-800 dark:text-neutral-200"
+                                    >
+                                        ${{
+                                            Number(
+                                                item.price * item.quantity
+                                            ).toFixed(2)
+                                        }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -358,14 +360,13 @@
                     &copy; {{ new Date().getFullYear() }} Petson.
                 </p>
             </div>
-
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import moment from 'moment';
-import html2pdf from 'html2pdf.js'
+import html2pdf from 'html2pdf.js';
 
 const { loadOrder } = useOrder();
 const { id } = useRoute().params;
@@ -373,15 +374,17 @@ const { id } = useRoute().params;
 const { data: response }: any = await loadOrder(id as string);
 const order = ref(response.value.data);
 
-const invoice = ref()
+const invoice = ref();
 
 const downloadInvoice = () => {
-html2pdf().set({
+    html2pdf()
+        .set({
             margin: 1.5,
             filename: `${order.value.uuid}.pdf`,
-             jsPDF: { unit: 'in', format: 'a1', orientation: 'portrait', },
+            jsPDF: { unit: 'in', format: 'a1', orientation: 'portrait' },
         })
         .from(invoice.value)
         .toPdf()
-        .save()}
+        .save();
+};
 </script>

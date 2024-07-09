@@ -37,7 +37,6 @@
   },
   "devDependencies": {
     "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
-    "@sidebase/nuxt-pdf": "^1.0.0-alpha.0",
     "nuxt-bootstrap-icons": "^2.0.0",
     "typescript": "^5.5.3"
   }

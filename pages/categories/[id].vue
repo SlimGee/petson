@@ -15,7 +15,7 @@
                         <ul
                             class="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400"
                         >
-                            <li v-for="brand in brands" :key="brand.uuid">
+                            <li v-for="brand in brands.data" :key="brand.uuid">
                                 <NuxtLink to="">
                                     <span>
                                         {{ brand.title }}
@@ -125,31 +125,36 @@
                     :key="product.uuid"
                 />
             </div>
+
+            <div
+                class="flex justify-center px-3 py-3.5 border-gray-200 dark:border-gray-700"
+            >
+                <UPagination
+                    v-model="page"
+                    :page-count="products.per_page"
+                    :total="products.total"
+                />
+            </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 const { id } = useRoute().params;
-const {loadProducts} = useCategory()
+const { loadProducts } = useCategory();
+const { loadBrands } = useBrand();
+const page = ref(1);
 
-const { data: products}:any = await loadProducts(id as string)
+const { data: products }: any = await loadProducts(id as string, page);
 
-const { data: brands } = useFetch<any>(
-    'https://pet-shop.buckhill.com.hr/api/v1/brands',
-    {
-        transform: (payload) => {
-            return payload.data;
-        },
-    }
-);
+const { data: brands }: any = await loadBrands();
+
 const { data: categories } = useFetch<any>(
     'https://pet-shop.buckhill.com.hr/api/v1/categories',
     {
         transform: (payload) => payload.data,
     }
 );
-//const category = products.value[products.value - 1];
 </script>
 
 <style></style>
