@@ -98,10 +98,15 @@
                     </template>
 
                     <template #download-data="{ row }">
-                        <div class="flex justify-center">
+                        <div class="flex justify-center space-x-3">
                             <UButton
+                                color="gray"
                                 @click="download(row.uuid)"
                                 icon="i-heroicons-arrow-down-tray"
+                            />
+                            <UButton
+                                :to="`/orders/${row.uuid}`"
+                                icon="i-heroicons-eye"
                             />
                         </div>
                     </template>

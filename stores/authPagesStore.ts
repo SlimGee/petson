@@ -22,5 +22,10 @@ export const useAuthPages = defineStore('authPages', {
             this.login = false;
             this.register = false;
         },
+        reset() {
+            this.login = false;
+            this.register = false;
+            this.profile = false;
+        },
     },
 });

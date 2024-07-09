@@ -32,8 +32,19 @@ export const useOrder = () => {
         );
     };
 
+    const loadOrder = (orderId: string) => {
+        return useAsyncData(orderId, () =>
+            $fetch(`https://pet-shop.buckhill.com.hr/api/v1/order/${orderId}`, {
+                headers: {
+                    Authorization: `Bearer ${token.value}`,
+                },
+            })
+        );
+    };
+
     return {
         downloadInvoice,
         loadOrders,
+        loadOrder,
     };
 };
