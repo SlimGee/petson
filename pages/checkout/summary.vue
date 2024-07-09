@@ -162,6 +162,10 @@ const { shipping, billing, payment } = useCheckoutStore();
 const { items } = useCartStore();
 const token = useCookie('token');
 
+definePageMeta({
+    middleware: ['auth'],
+});
+
 const { data, execute } = useAsyncData(
     async () => {
         const { data }: any = await $fetch(

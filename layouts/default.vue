@@ -8,14 +8,14 @@
                 aria-label="Global"
             >
                 <div class="flex items-center justify-between">
-                    <a
+                    <NuxtLink
                         class="flex items-center text-xl text-white"
-                        href="#"
+                        to="/"
                         aria-label="Brand"
                     >
                         <logo class="w-6 h-6 text-white" />
                         <span class="ms-2">petson.</span>
-                    </a>
+                    </NuxtLink>
 
                     <div class="sm:hidden">
                         <button

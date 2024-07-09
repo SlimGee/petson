@@ -331,6 +331,10 @@ import { z } from 'zod';
 import type { FormSubmitEvent } from '#ui/types';
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
 
+definePageMeta({
+    middleware: ['auth'],
+});
+
 const schema = z.object({
     first_name: z.string().nonempty().trim(),
     last_name: z.string().nonempty().trim(),

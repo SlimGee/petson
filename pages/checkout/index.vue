@@ -128,7 +128,6 @@ import type { FormSubmitEvent } from '#ui/types';
 
 definePageMeta({
     middleware: ['auth'],
-    // or middleware: 'auth'
 });
 
 const schema = z.object({

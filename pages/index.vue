@@ -3,10 +3,10 @@
     <div class="relative overflow-hidden">
         <div class="">
             <div class="max-w-2xl text-center mx-auto">
-                <div class="relative mx-auto w-8/12">
+                <div class="relative mx-auto w-8/12 mt-6">
                     <input
                         type="text"
-                        class="py-3 px-4 ps-11 block w-full border-default placeholder:text-default rounded text-sm focus:border-default focus:ring-default disabled:opacity-50 disabled:pointer-events-none"
+                        class="py-3 px-4 ps-11 block w-full !ring-default !border-default placeholder:text-default rounded text-sm focus:border-default focus:ring-default disabled:opacity-50 disabled:pointer-events-none"
                         placeholder="Search products"
                     />
                     <div
